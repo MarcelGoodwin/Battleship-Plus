@@ -1,4 +1,17 @@
-const http = require('http');
+http = require('http');
+io = require('socket.io');
+
+var firebase = require('firebase');
+var firebaseConfig = {
+    apiKey: "AIzaSyAu2GrYW0-sTZfeI_bsOTiyBF5sicnT6oQ",
+    authDomain: "battleship-plus.firebaseapp.com",
+    databaseURL: "https://battleship-plus.firebaseio.com",
+    projectId: "battleship-plus",
+    storageBucket: "battleship-plus.appspot.com",
+    messagingSenderId: "24450549581"
+};
+firebase.initializeApp(config);
+
 
 const port = 3000; 
 const hostname = '127.0.0.1';
