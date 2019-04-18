@@ -1,5 +1,6 @@
-http = require('http');
-io = require('socket.io');
+const http = require('http');
+const io = require('socket.io');
+const waitroom = ('./waitroom.js');
 
 var firebase = require('firebase');
 var firebaseConfig = {
@@ -25,4 +26,7 @@ const server = http.createServer((req, res) => {
 server.listen(port, hostname, () => {
 	console.log(`Server running on port at http://${hostname}:${port}/`);
 });
+
+
+var players[];
 

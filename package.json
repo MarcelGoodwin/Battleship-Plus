@@ -1,0 +1,24 @@
+{
+  "name": "battleship-plus",
+  "version": "1.0.0",
+  "description": "battleship webapp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcelGoodwin/Battleship-Plus.git"
+  },
+  "author": "Marcel Goodwin/Christian Bortolotti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarcelGoodwin/Battleship-Plus/issues"
+  },
+  "homepage": "https://github.com/MarcelGoodwin/Battleship-Plus#readme",
+  "dependencies": {
+    "firebase": "^5.9.4",
+    "socket.io": "^2.2.0"
+  }
+}
