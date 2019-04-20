@@ -1,7 +1,11 @@
-const http = require('http');
-const io = require('socket.io');
-const waitroom = ('./waitroom.js');
+//dependencies
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io').listen(server);
+var waitroom = ('./waitroom.js');
 
+//initialize firebase
 var firebase = require('firebase');
 var firebaseConfig = {
     apiKey: "AIzaSyAu2GrYW0-sTZfeI_bsOTiyBF5sicnT6oQ",
@@ -11,22 +15,25 @@ var firebaseConfig = {
     storageBucket: "battleship-plus.appspot.com",
     messagingSenderId: "24450549581"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
+//runs on port 3000
+var port = 3000;
 
-const port = 3000; 
-const hostname = '127.0.0.1';
+app.use(express.static(__dirname + '/public'))
 
-const server = http.createServer((req, res) => {
-	res.statusCode = 200;
-	res.setHeader('Content-Type', 'text/plain');
-	res.end('Hello World!\n');
+app.get('/', function(req, res){
+    //res.send('<h1>Hello World!</h1>');
+    res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(port, hostname, () => {
-	console.log(`Server running on port at http://${hostname}:${port}/`);
+app.listen(port, function(){
+    console.log(`server running on port ${port}`);
 });
 
-
-var players[];
-
+io.on('connection', function(){
+    console.log('user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
+});

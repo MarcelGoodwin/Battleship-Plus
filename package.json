@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/MarcelGoodwin/Battleship-Plus#readme",
   "dependencies": {
-    "firebase": "^5.9.4",
+    "express": "^4.16.4",
+    "firebase": "^5.10.0",
     "socket.io": "^2.2.0"
   }
 }
