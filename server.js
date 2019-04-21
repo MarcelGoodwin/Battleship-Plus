@@ -17,6 +17,8 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
+console.log(firebase.app().name);
+
 //runs on port 3000
 var port = 3000;
 
@@ -27,13 +29,14 @@ app.get('/', function(req, res){
     res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(port, function(){
+io.on('connection', function(socket){
+    console.log(`user connected`);
+    socket.on('disconnect', function(){
+        console.log(`user disconnected`);
+    });
+});
+
+server.listen(port, function(){
     console.log(`server running on port ${port}`);
 });
 
-io.on('connection', function(){
-    console.log('user connected');
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
-    });
-});
