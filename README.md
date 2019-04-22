@@ -1,6 +1,5 @@
-# Battleship-Plus
-Online 4 player battleship game with special abilities and only one winner.
-The winner may not necessarily be the last one standing.
+# Breakout Invasion
+Hybrid breakout/space invaders game. Eliminate all of the enemies before they reach your paddle! Go for the highest score!
 
 Marcel Goodwin; goodwi13@purdue.edu
 Christian Bortolotti; cbortolo@purdue.edu
