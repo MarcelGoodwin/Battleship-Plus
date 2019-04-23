@@ -1,3 +1,27 @@
+const topTen = document.querySelector('topTen');
+
+//function to populate top 10
+function renderTopTen(doc){
+    let li = document.createElement('li');
+    let name = document.createElement('span');
+    let score = document.createElement('span');
+
+    li.setAttribute('data-id', doc.id);
+    name.textContent = doc.data().name;
+    score.textContent = doc.data().score;
+
+    li.appendChild(name);
+    li.appendChild(score);
+
+    topTen.appendChild(li);
+}
+
+db.collection('highscores').get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        renderTopTen(doc);
+    })
+})
+
 var main = new Phaser.Class({
 
     Extends: Phaser.Scene,

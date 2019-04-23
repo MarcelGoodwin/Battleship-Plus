@@ -30,7 +30,7 @@ admin.initializeApp({
     credential
 });*/
 
-console.log(firebase.app().name);
+//console.log(firebase.app().name);
 
 //runs on port 3000
 var port = 3000;
@@ -46,10 +46,6 @@ io.on('connection', function(socket){
     console.log(`user connected`);
     socket.on('disconnect', function(){
         console.log(`user disconnected`);
-    });
-
-    socket.on('gameEnd', function(score){
-
     });
 });
 
