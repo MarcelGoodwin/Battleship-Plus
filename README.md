@@ -6,4 +6,5 @@ Christian Bortolotti; cbortolo@purdue.edu
 
 node.js backend;
 html5 frontend;
+Phaser 3 as html5 game framework;
 socket.io for connections;
