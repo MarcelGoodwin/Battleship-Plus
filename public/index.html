@@ -7,18 +7,26 @@
     <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+
     <title>Breakout Invasion</title>
+
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="shortcut icon" type="image/png" href="/../images/favicon.png"/>
   </head>
 
   <body>
-    
+          
+      <div class="logo">
+        <img src="../images/title2.png">
+      </div>
+
+      <div class="phaser-container" id="phaser-container"></div>
+
       <div class="content">
         <ul id="topTen"></ul>
       </div>
-      
+
       <!-- Firebase sdk dependencies for the app -->
       <script>
         // Initialize Firebase
@@ -40,11 +48,7 @@
       <script src="//cdn.jsdelivr.net/npm/phaser@3.0.0/dist/phaser.min.js"></script>
       <script src="js/game.js"></script>
 
-      <div class="logo">
-        <img src="../images/title2.png">
-      </div>
 
-      <div class="phaser-container" id="phaser-container"></div>
   </body>
 
   <footer>

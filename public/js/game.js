@@ -1,4 +1,4 @@
-const topTen = document.querySelector('topTen');
+const topTen = document.querySelector('#topTen');
 
 //function to populate top 10
 function renderTopTen(doc){
