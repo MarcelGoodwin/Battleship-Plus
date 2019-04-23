@@ -3,19 +3,30 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
-var waitroom = ('./waitroom.js');
 
 //initialize firebase
 var firebase = require('firebase');
 var firebaseConfig = {
-    apiKey: "AIzaSyAu2GrYW0-sTZfeI_bsOTiyBF5sicnT6oQ",
-    authDomain: "battleship-plus.firebaseapp.com",
-    databaseURL: "https://battleship-plus.firebaseio.com",
-    projectId: "battleship-plus",
-    storageBucket: "battleship-plus.appspot.com",
-    messagingSenderId: "24450549581"
+    apiKey: "AIzaSyDsKkNBb4yRMq2uDpiysYHhR7Z8Iy38hHY",
+    authDomain: "breakout-invasion.firebaseapp.com",
+    databaseURL: "https://breakout-invasion.firebaseio.com",
+    projectId: "breakout-invasion",
+    storageBucket: "breakout-invasion.appspot.com",
+    messagingSenderId: "213134177858"
 };
 firebase.initializeApp(firebaseConfig);
+
+const admin = require('firebase-admin');
+var serviceAccount = require(__dirname + 'breakout-invasion-firebase-adminsdk-go6id-ab06bac286.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://breakout-invasion.firebaseio.com"
+});
+
+admin.initializeApp({
+    credential
+});
 
 console.log(firebase.app().name);
 
@@ -33,6 +44,10 @@ io.on('connection', function(socket){
     console.log(`user connected`);
     socket.on('disconnect', function(){
         console.log(`user disconnected`);
+    });
+
+    socket.on('gameEnd', function(score){
+
     });
 });
 
