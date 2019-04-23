@@ -1,0 +1,24 @@
+body {
+  background-color: #adc9f7;
+  margin: 0 auto;
+}
+
+canvas, .logo {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 5;
+  padding-bottom: 5;
+  margin: auto;
+  display: block;
+  width: 800px;
+}
+
+footer {
+  background-color: #a1a5ad;
+  font-family: "Impact", sans-serif;
+  font-size: 16px;
+  height: 48px;
+  line-height: 48px;
+  margin-top: 30px;
+  padding: 0 20px;
+}

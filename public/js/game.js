@@ -20,12 +20,14 @@ var main = new Phaser.Class({
     {
         this.load.image('red', "../images/red1.png");
         this.load.image('green', "../images/green1.png");
-        this.load.image('enemy', "../images/spaceboi.png");
+        this.load.image('spaceboi', "../images/spaceboi.png");
         this.load.image('paddle', "../images/shell.png");
         this.load.image('ball', "../images/ball.png");
+        this.load.image('paddle3', "../images/uss_new_jersey.jpg");
         this.cameras.main.backgroundColor.setTo(70,63,140);﻿
         this.counter = 0;
         this.HI = 0;
+        this.speedBoost = 1;
     },
 
     create: function ()
@@ -41,7 +43,7 @@ var main = new Phaser.Class({
 
         //Enemies
         this.bricks = this.physics.add.staticGroup({
-            key: 'enemy',
+            key: 'spaceboi',
             frame: ['', '', '', '', '', ''],
             frameQuantity: 10,
             gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 50, x: 112, y: 100 }
@@ -103,6 +105,7 @@ var main = new Phaser.Class({
 
     hitPaddle: function (ball, paddle)
     {
+        this.speedBoost += .5;
         var diff = 0;
         if (ball.x < paddle.x)
         {
@@ -133,7 +136,7 @@ var config = {
     type: Phaser.WEBGL,
     width: 800,
     height: 600,
-    parent: 'phaser-example',
+    parent: 'phaser-container',
     scene: [ main ],
     physics: {
         default: 'arcade'
