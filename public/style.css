@@ -1,5 +1,5 @@
 body {
-  background-color: #adc9f7;
+  background-color: #bec4c1;
   margin: 0 auto;
 }
 
@@ -13,12 +13,24 @@ canvas, .logo {
   width: 800px;
 }
 
+canvas {
+  height: 600px;
+  border-top: black 10px solid;
+  border-bottom: black 10px solid;
+  border-left: black 20px solid;
+  border-right: black 20px solid;
+}
+
 footer {
-  background-color: #a1a5ad;
-  font-family: "Impact", sans-serif;
-  font-size: 16px;
+  background-color: #161616;
   height: 48px;
   line-height: 48px;
   margin-top: 30px;
   padding: 0 20px;
+}
+
+footer a {
+  color: #e0e0e0;
+  font-family: "Impact", sans-serif;
+  font-size: 16px;
 }
