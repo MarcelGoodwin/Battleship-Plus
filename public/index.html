@@ -3,15 +3,34 @@
 <html>
 
   <head>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+
     <meta charset="utf-8">
   </head>
 
   <body>
+    
+      <div class="content">
+        <ul id="topTen"></ul>
+      </div>
+      
       <!-- Firebase sdk dependencies for the app -->
-      <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-app.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-auth.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-database.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase-firestore.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyDsKkNBb4yRMq2uDpiysYHhR7Z8Iy38hHY",
+          authDomain: "breakout-invasion.firebaseapp.com",
+          databaseURL: "https://breakout-invasion.firebaseio.com",
+          projectId: "breakout-invasion",
+          storageBucket: "breakout-invasion.appspot.com",
+          messagingSenderId: "213134177858"
+        };
+        firebase.initializeApp(config);
+        const db = firebase.firestore();
+        //db.settings({timestampsInSnapshots: true});
+      </script>
 
       <script src="/socket.io/socket.io.js"></script>
       <script var socket = io();></script>
