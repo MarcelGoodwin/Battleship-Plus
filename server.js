@@ -16,7 +16,9 @@ var firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-const admin = require('firebase-admin');
+/*const db = firebase.firestore();
+db.settings({timestampsInSnapshots: true});*/
+/*const admin = require('firebase-admin');
 var serviceAccount = require(__dirname + 'breakout-invasion-firebase-adminsdk-go6id-ab06bac286.json');
 
 admin.initializeApp({
@@ -26,7 +28,7 @@ admin.initializeApp({
 
 admin.initializeApp({
     credential
-});
+});*/
 
 console.log(firebase.app().name);
 
