@@ -117,7 +117,7 @@ var main = new Phaser.Class({
 
     makeEnemies: function ()
     {
-      for (var row = 8; row < 10; row++) {
+      for (var row = 0; row < 10; row++) {
         for (var col = 0; col < 6; col++) {
           this.enemies.create(112 + row * 64, 80 + col * 50, 'spaceboi');
         }
