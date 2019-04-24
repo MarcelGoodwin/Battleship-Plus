@@ -64,6 +64,7 @@ var main = new Phaser.Class({
         this.HIText;
         this.movement;
         this.momentum;
+        this.enemAnim;
     },
 
     preload: function ()
@@ -71,6 +72,7 @@ var main = new Phaser.Class({
         this.load.image('spaceboi', "../images/spaceboi.png");
         this.load.image('paddle', "../images/shell.png");
         this.load.image('ball', "../images/ball.png");
+        this.load.spritesheet('spaceboiSH', "../images/spaceboiSH.png", {frameWidth: 64, frameHeight: 32});
         this.cameras.main.backgroundColor.setTo(70,63,140);﻿
         this.counter = 0;
         this.HI = 0;
@@ -90,6 +92,12 @@ var main = new Phaser.Class({
         this.paddle = this.physics.add.image(400, 550, 'paddle').setImmovable();
 
         //Enemies
+        this.anims.create({
+          key: 'spaceSH',
+          repeat: -1,
+          frameRate: 1,
+          frames: this.anims.generateFrameNumbers('spaceboiSH')
+        });
         this.enemies = this.physics.add.staticGroup();
         this.makeEnemies();
 
@@ -117,16 +125,22 @@ var main = new Phaser.Class({
 
     makeEnemies: function ()
     {
+      //var test = this.add.sprite(32, 64, 'spaceboiSH', 0);
+      //test.play('spaceSH');
       for (var row = 0; row < 10; row++) {
         for (var col = 0; col < 6; col++) {
-          this.enemies.create(112 + row * 64, 80 + col * 50, 'spaceboi');
+          //this.enemies.create(112 + row * 64, 80 + col * 50, 'spaceboi');
+          var lEnem = this.add.sprite(112 + row * 64, 80 + col * 50, 'spaceboiSH', 0);
+          lEnem.anims.load('spaceboiSH');
+          lEnem.play('spaceSH');
+          this.enemies.add(lEnem);
         }
       }
     },
 
     hitenemy: function (ball, enemy)
     {
-        enemy.disableBody(true, true);
+        //enemy.disableBody(true, true);
         this.enemies.remove(enemy, true, true);
         this.counter++;
         if (this.enemies.countActive() === 0)

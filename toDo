@@ -1,0 +1,28 @@
+//////////////////////////////////
+
+game.js
+----------------------------------
+DONE  - Enemy Animation
+- Sprites:
+    -paddle
+    -ball
+- Sounds:
+    -hitenemy
+    -hitPaddle
+    -die
+- Text:
+    -Better score text
+- (stretch) Menu Screen
+- (stretch) Music
+  - (mega stretch) Volume Settings
+----------------------------------
+
+//////////////////////////////////
+
+style.css
+----------------------------------
+-Format table
+----------------------------------
+
+-Clean up project files!
+-Remove unnecessary files (including this one)!
