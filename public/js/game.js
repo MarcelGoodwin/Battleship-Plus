@@ -38,6 +38,8 @@ var main = new Phaser.Class({
         this.counter;
         this.HI;
         this.HIText;
+        this.movement;
+        this.momentum;
     },
 
     preload: function ()
@@ -48,6 +50,8 @@ var main = new Phaser.Class({
         this.cameras.main.backgroundColor.setTo(70,63,140);﻿
         this.counter = 0;
         this.HI = 0;
+        this.movement = 0;
+        this.momentum = 1;
     },
 
     create: function ()
@@ -129,6 +133,7 @@ var main = new Phaser.Class({
         });
         this.enemies.clear(true);
         this.makeEnemies();
+        this.movement = 0;
     },
 
     hitPaddle: function (ball, paddle)
@@ -161,6 +166,24 @@ var main = new Phaser.Class({
         {
             this.resetLevel();
         }
+
+        this.movement++;
+        if (this.movement > 50) {
+          this.movement = -50;
+          this.momentum = this.momentum * -1;
+        }
+
+        if (this.momentum > 0) {
+          this.enemies.children.each(function (enemy) {
+              enemy.x += 1;
+          });
+        }
+        else {
+          this.enemies.children.each(function (enemy) {
+              enemy.x -= 1;
+          });
+        }
+        this.enemies.refresh();
     }
 });
 
