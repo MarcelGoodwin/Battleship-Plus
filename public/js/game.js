@@ -16,6 +16,10 @@ function renderTopTen(doc){
     topTen.appendChild(li);
 }
 
+function isGreaterThan(doc){
+
+}
+
 db.collection('highscores').get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderTopTen(doc);
@@ -106,7 +110,7 @@ var main = new Phaser.Class({
         this.counter++;
         if (this.enemies.countActive() === 0)
         {
-            this.resetLevel();
+            this.resetLevel(1);
         }
         this.counterText.setText(`SCORE: ${this.counter}`);
     },
@@ -118,8 +122,17 @@ var main = new Phaser.Class({
         this.ball.setData('onPaddle', true);
     },
 
-    resetLevel: function ()
+    resetLevel: function (hard)
     {
+        if(hard === 1){
+
+        }else{
+            var username = prompt("You got a high score! Enter a name:", "name");
+            db.collection('highscores').add({
+                name: username,
+                score: this.HI
+            });
+        }
         if (this.counter > this.HI) {
           this.HI = this.counter;
         }
