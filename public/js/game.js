@@ -2,10 +2,7 @@ const topTen = document.querySelector('#topTen');
 
 //function to populate top 10
 function renderTopTen(doc){
-    //let li = document.createElement('li');
     let li = document.createElement('tr');
-    //let name = document.createElement('span');
-    //let score = document.createElement('span');
     let name = document.createElement('td');
     let score = document.createElement('td');
 
@@ -73,7 +70,6 @@ var main = new Phaser.Class({
     preload: function ()
     {
         this.load.image('spaceboi', "../images/spaceboi.png");
-        this.load.image('paddle', "../images/shell.png");
         this.load.image('ball', "../images/circle2.png");
         this.load.spritesheet('spaceboiSH', "../images/spaceboiSH.png", {frameWidth: 64, frameHeight: 32});
         this.load.spritesheet('paddleSH', "../images/paddleSH.png", {frameWidth: 80, frameHeight: 32});
@@ -90,6 +86,7 @@ var main = new Phaser.Class({
         this.counterText = this.add.text(32, 568, 'SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
         this.HIText = this.add.text(570, 568, 'MY HI-SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
 
+        //Line
         var line = new Phaser.Geom.Line(0, 532, 800, 532);
         var graphics = this.add.graphics({ lineStyle: { width: 4, color: 0x000000 } });
         graphics.strokeLineShape(line);
@@ -107,7 +104,6 @@ var main = new Phaser.Class({
         this.paddle = this.physics.add.sprite(400, 550, 'paddleSH', 0).setImmovable();
         this.paddle.anims.load('paddleSH');
         this.paddle.play('paddleSH');
-        //this.paddle = this.physics.add.image(400, 550, 'paddle').setImmovable();
 
         //Enemies
         this.anims.create({
@@ -143,11 +139,8 @@ var main = new Phaser.Class({
 
     makeEnemies: function ()
     {
-      //var test = this.add.sprite(32, 64, 'spaceboiSH', 0);
-      //test.play('spaceSH');
       for (var row = 0; row < 10; row++) {
         for (var col = 0; col < 6; col++) {
-          //this.enemies.create(112 + row * 64, 80 + col * 50, 'spaceboi');
           var lEnem = this.add.sprite(112 + row * 64, 80 + col * 50, 'spaceboiSH', 0);
           lEnem.anims.load('spaceboiSH');
           lEnem.play('spaceSH');
@@ -158,7 +151,6 @@ var main = new Phaser.Class({
 
     hitenemy: function (ball, enemy)
     {
-        //enemy.disableBody(true, true);
         this.enemies.remove(enemy, true, true);
         this.counter++;
         if (this.enemies.countActive() === 0)
@@ -197,9 +189,8 @@ var main = new Phaser.Class({
                 }
             });
 
-        }else{
-
         }
+
         this.resetBall();
 
         this.enemies.children.iterate(function (child) {
@@ -255,7 +246,6 @@ var main = new Phaser.Class({
           this.movement = -50;
           this.momentum = this.momentum * -1;
         }
-
         if (this.momentum > 0) {
           this.enemies.children.each(function (enemy) {
               enemy.x += 1;
