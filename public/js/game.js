@@ -36,8 +36,8 @@ highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
 })
 
 function rerenderTopTen(){
-    while(topTen.hasChildNodes()){
-        topTen.removeChild(topTen.firstChild);
+    while(topTen.childNodes.length > 2){
+        topTen.removeChild(topTen.lastChild);
     }
     highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
