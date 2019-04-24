@@ -143,8 +143,9 @@ var main = new Phaser.Class({
             this.HIText.setText(`MY HI: ${this.HI}`);
 
             highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
+                var flag = 0;
                 snapshot.docs.forEach(doc => {
-                    if(flag != 0){
+                    if(flag == 0){
                         flag = compareTopTen(doc, this.HI);
                     }
                 })
