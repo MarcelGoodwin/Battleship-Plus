@@ -1,28 +1,31 @@
-//////////////////////////////////
+:::TODO:::
+
+Known bugs:
+----------------------------------
+-Table formats poorly after live update (needs refreshable)
+-High score polish
+
 
 game.js
 ----------------------------------
-DONE  - Enemy Animation
-- Sprites:
-    -paddle
-    -ball
 - Sounds:
     -hitenemy
     -hitPaddle
     -die
-- Text:
-    -Better score text
 - (stretch) Menu Screen
-- (stretch) Music
+- (stretch) Game Music
   - (mega stretch) Volume Settings
 ----------------------------------
 
-//////////////////////////////////
 
 style.css
 ----------------------------------
--Format table
+- (stretch) grid format css
+    - (stretch) hiscores on left
+    - (stretch) instructions on right
 ----------------------------------
 
+General
+----------------------------------
 -Clean up project files!
 -Remove unnecessary files (including this one)!

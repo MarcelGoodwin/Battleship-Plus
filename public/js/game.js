@@ -2,9 +2,12 @@ const topTen = document.querySelector('#topTen');
 
 //function to populate top 10
 function renderTopTen(doc){
-    let li = document.createElement('li');
-    let name = document.createElement('span');
-    let score = document.createElement('span');
+    //let li = document.createElement('li');
+    let li = document.createElement('tr');
+    //let name = document.createElement('span');
+    //let score = document.createElement('span');
+    let name = document.createElement('td');
+    let score = document.createElement('td');
 
     li.setAttribute('data-id', doc.id);
     name.textContent = doc.data().name;
@@ -71,8 +74,9 @@ var main = new Phaser.Class({
     {
         this.load.image('spaceboi', "../images/spaceboi.png");
         this.load.image('paddle', "../images/shell.png");
-        this.load.image('ball', "../images/ball.png");
+        this.load.image('ball', "../images/circle2.png");
         this.load.spritesheet('spaceboiSH', "../images/spaceboiSH.png", {frameWidth: 64, frameHeight: 32});
+        this.load.spritesheet('paddleSH', "../images/paddleSH.png", {frameWidth: 80, frameHeight: 32});
         this.cameras.main.backgroundColor.setTo(70,63,140);﻿
         this.counter = 0;
         this.HI = 0;
@@ -85,14 +89,25 @@ var main = new Phaser.Class({
         //Text
         this.counterText = this.add.text(32, 568, 'SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
         this.HIText = this.add.text(570, 568, 'MY HI-SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
+
         var line = new Phaser.Geom.Line(0, 532, 800, 532);
         var graphics = this.add.graphics({ lineStyle: { width: 4, color: 0x000000 } });
         graphics.strokeLineShape(line);
 
         //Player
-        this.ball = this.physics.add.image(400, 500, 'ball').setCollideWorldBounds(true).setBounce(1);
+        this.ball = this.physics.add.image(400, 510, 'ball').setCollideWorldBounds(true).setBounce(1);
         this.ball.setData('onPaddle', true);
-        this.paddle = this.physics.add.image(400, 550, 'paddle').setImmovable();
+        this.anims.create({
+          key: 'paddleSH',
+          repeat: -1,
+          frameRate: 6,
+          yoyo: true,
+          frames: this.anims.generateFrameNumbers('paddleSH')
+        });
+        this.paddle = this.physics.add.sprite(400, 550, 'paddleSH', 0).setImmovable();
+        this.paddle.anims.load('paddleSH');
+        this.paddle.play('paddleSH');
+        //this.paddle = this.physics.add.image(400, 550, 'paddle').setImmovable();
 
         //Enemies
         this.anims.create({
@@ -156,7 +171,7 @@ var main = new Phaser.Class({
     resetBall: function ()
     {
         this.ball.setVelocity(0);
-        this.ball.setPosition(this.paddle.x, 500);
+        this.ball.setPosition(this.paddle.x, 505);
         this.ball.setData('onPaddle', true);
     },
 
@@ -252,9 +267,10 @@ var main = new Phaser.Class({
           });
         }
 
-      //  this.enemies.children.each(function (enemy) {
-      //      enemy.y += 0.1;
-      //  });
+        //UNCOMMENT FOR EASY ENEMY BOTTOM COLLISION TESTING
+        //this.enemies.children.each(function (enemy) {
+        //    enemy.y += 0.1;
+        //});
 
         this.enemies.refresh();
     }

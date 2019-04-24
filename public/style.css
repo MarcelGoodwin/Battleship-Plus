@@ -3,6 +3,14 @@ body {
   margin: 0 auto;
 }
 
+canvas {
+  height: 600px;
+  border-top: black 10px solid;
+  border-bottom: black 10px solid;
+  border-left: black 20px solid;
+  border-right: black 20px solid;
+}
+
 canvas, .logo {
   padding-left: 0;
   padding-right: 0;
@@ -11,14 +19,6 @@ canvas, .logo {
   margin: auto;
   display: block;
   width: 800px;
-}
-
-canvas {
-  height: 600px;
-  border-top: black 10px solid;
-  border-bottom: black 10px solid;
-  border-left: black 20px solid;
-  border-right: black 20px solid;
 }
 
 footer {
@@ -33,4 +33,37 @@ footer a {
   color: #e0e0e0;
   font-family: "Impact", sans-serif;
   font-size: 16px;
+}
+
+table {
+  padding-top: 30;
+}
+
+td {
+  font-weight: 100;
+}
+
+th, td {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#table-main {
+  color: #e0e0e0;
+  background-color: #161616;
+  font-size: 18px;
+  text-align: center;
+}
+
+#table-header {
+  color: black;
+  font-size: 16px;
+}
+
+#table-header, td {
+  font-family: "Impact", sans-serif;
+  font-size: 12px;
+  width: 150px;
+  text-overflow: clip;
+  text-align: left;
+  padding: 5px;
 }
