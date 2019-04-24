@@ -76,6 +76,7 @@ var main = new Phaser.Class({
         this.cameras.main.backgroundColor.setTo(70,63,140);﻿
         this.counter = 0;
         this.HI = 0;
+        this.MYHI =0;
         this.movement = 0;
         this.momentum = 1;
     },
@@ -170,25 +171,27 @@ var main = new Phaser.Class({
     resetLevel: function (hard)
     {
         if(hard === 1){
+            var flag2 = 0;
             if (this.counter > this.HI) {
                 this.HI = this.counter;
+                flag2 = 1;
             }
             this.counter = 0;
             this.counterText.setText(`SCORE: ${this.counter}`);
             this.HIText.setText(`MY HI-SCORE: ${this.HI}`);
-
-            highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
-                var flag = 0;
-                snapshot.docs.forEach(doc => {
-                    if(flag == 0){
-                        flag = compareTopTen(doc, this.HI);
+            if(flag2 == 1){
+                highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
+                    var flag = 0;
+                    snapshot.docs.forEach(doc => {
+                        if(flag == 0){
+                            flag = compareTopTen(doc, this.HI);
+                        }
+                    })
+                    if(flag == 1){
+                        rerenderTopTen();
                     }
-                })
-                if(flag == 1){
-                    rerenderTopTen();
-                }
-            });
-
+                });
+            }
         }
 
         this.resetBall();
