@@ -16,15 +16,14 @@ function renderTopTen(doc){
     topTen.appendChild(li);
 }
 
-function isGreaterThan(doc){
 
-}
-
-db.collection('highscores').get().then((snapshot) => {
+const highscoresRef = db.collection('highscores');
+highscoresRef.get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderTopTen(doc);
     })
 })
+
 
 var main = new Phaser.Class({
 
@@ -106,7 +105,7 @@ var main = new Phaser.Class({
         this.counter++;
         if (this.enemies.countActive() === 0)
         {
-            this.resetLevel(1);
+            this.resetLevel(0);
         }
         this.counterText.setText(`SCORE: ${this.counter}`);
     },
@@ -121,20 +120,20 @@ var main = new Phaser.Class({
     resetLevel: function (hard)
     {
         if(hard === 1){
-
-        }else{
-            var username = prompt("You got a high score! Enter a name:", "name");
-            db.collection('highscores').add({
+            if (this.counter > this.HI) {
+                this.HI = this.counter;
+            }
+            this.counter = 0;
+            this.counterText.setText(`SCORE: ${this.counter}`);
+            this.HIText.setText(`HI: ${this.HI}`);
+            //var username = prompt("You got a high score! Enter a name:", "name");
+            /*db.collection('highscores').add({
                 name: username,
                 score: this.HI
-            });
+            });*/
+        }else{
+
         }
-        if (this.counter > this.HI) {
-          this.HI = this.counter;
-        }
-        this.counter = 0;
-        this.counterText.setText(`SCORE: ${this.counter}`);
-        this.HIText.setText(`HI: ${this.HI}`);
         this.resetBall();
 
         this.enemies.children.iterate(function (child) {
@@ -172,7 +171,7 @@ var main = new Phaser.Class({
     {
         if (this.ball.y > 600)
         {
-            this.resetLevel();
+            this.resetLevel(1);
         }
     }
 });
