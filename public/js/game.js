@@ -16,9 +16,20 @@ function renderTopTen(doc){
     topTen.appendChild(li);
 }
 
+function compareTopTen(doc, num){
+    if(doc.data().score < num){
+        var username = prompt("You got a high score! Enter a name:", "name");
+        db.collection('highscores').add({
+            name: username,
+            score: num
+        });
+        return 1;
+    }
+    return 0;
+}
 
 const highscoresRef = db.collection('highscores');
-highscoresRef.get().then((snapshot) => {
+highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
     snapshot.docs.forEach(doc => {
         renderTopTen(doc);
     })
@@ -129,12 +140,16 @@ var main = new Phaser.Class({
             }
             this.counter = 0;
             this.counterText.setText(`SCORE: ${this.counter}`);
-            this.HIText.setText(`HI: ${this.HI}`);
-            //var username = prompt("You got a high score! Enter a name:", "name");
-            /*db.collection('highscores').add({
-                name: username,
-                score: this.HI
-            });*/
+            this.HIText.setText(`MY HI: ${this.HI}`);
+
+            highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    if(flag != 0){
+                        flag = compareTopTen(doc, this.HI);
+                    }
+                })
+            });
+
         }else{
 
         }
