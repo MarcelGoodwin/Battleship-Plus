@@ -107,7 +107,7 @@ var main = new Phaser.Class({
 
     makeEnemies: function ()
     {
-      for (var row = 0; row < 10; row++) {
+      for (var row = 8; row < 10; row++) {
         for (var col = 0; col < 6; col++) {
           this.enemies.create(112 + row * 64, 80 + col * 50, 'spaceboi');
         }
@@ -117,6 +117,7 @@ var main = new Phaser.Class({
     hitenemy: function (ball, enemy)
     {
         enemy.disableBody(true, true);
+        this.enemies.remove(enemy, true, true);
         this.counter++;
         if (this.enemies.countActive() === 0)
         {
@@ -193,6 +194,15 @@ var main = new Phaser.Class({
         if (this.ball.y > 600)
         {
             this.resetLevel(1);
+        }
+        var enemyReached = 0;
+        this.enemies.children.each(function (enemy) {
+            if (enemy.y > 500) {
+              enemyReached = 1;
+            }
+        });
+        if (enemyReached > 0) {
+          this.resetLevel(1);
         }
 
         this.movement++;
