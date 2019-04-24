@@ -31,7 +31,7 @@ var main = new Phaser.Class({
     function main ()
     {
         Phaser.Scene.call(this, { key: 'main' });
-        this.bricks;
+        this.enemies;
         this.paddle;
         this.ball;
         this.counterText;
@@ -66,16 +66,11 @@ var main = new Phaser.Class({
         this.paddle = this.physics.add.image(400, 550, 'paddle').setImmovable();
 
         //Enemies
-        this.bricks = this.physics.add.staticGroup({
-            key: 'spaceboi',
-            frame: ['', '', '', '', '', ''],
-            frameQuantity: 10,
-            gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 50, x: 112, y: 100 }
-        });
+        this.makeEnemies();
 
         //Collision
         this.physics.world.setBoundsCollision(true, true, true, false);
-        this.physics.add.collider(this.ball, this.bricks, this.hitBrick, null, this);
+        this.physics.add.collider(this.ball, this.enemies, this.hitenemy, null, this);
         this.physics.add.collider(this.ball, this.paddle, this.hitPaddle, null, this);
 
         //User Input
@@ -95,11 +90,21 @@ var main = new Phaser.Class({
         }, this);
     },
 
-    hitBrick: function (ball, brick)
+    makeEnemies: function ()
     {
-        brick.disableBody(true, true);
+      this.enemies = this.physics.add.staticGroup({
+          key: 'spaceboi',
+          frame: ['', '', '', '', '', ''],
+          frameQuantity: 10,
+          gridAlign: { width: 10, height: 6, cellWidth: 64, cellHeight: 50, x: 112, y: 100 }
+      });
+    },
+
+    hitenemy: function (ball, enemy)
+    {
+        enemy.disableBody(true, true);
         this.counter++;
-        if (this.bricks.countActive() === 0)
+        if (this.enemies.countActive() === 0)
         {
             this.resetLevel();
         }
@@ -122,9 +127,6 @@ var main = new Phaser.Class({
         this.counterText.setText(`SCORE: ${this.counter}`);
         this.HIText.setText(`HI: ${this.HI}`);
         this.resetBall();
-        this.bricks.children.each(function (brick) {
-            brick.enableBody(false, 0, 0, true, true);
-        });
     },
 
     hitPaddle: function (ball, paddle)
@@ -145,6 +147,11 @@ var main = new Phaser.Class({
         {
             ball.setVelocityX(2 + Math.random() * 8);
         }
+
+        this.enemies.children.each(function (enemy) {
+            enemy.y += 10;
+        });
+        this.enemies.refresh();
     },
 
     update: function ()
@@ -153,6 +160,7 @@ var main = new Phaser.Class({
         {
             this.resetLevel();
         }
+
     }
 });
 
