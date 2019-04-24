@@ -83,8 +83,11 @@ var main = new Phaser.Class({
     create: function ()
     {
         //Text
-        this.counterText = this.add.text(32, 568, 'SCORE: 0', { fontSize: '32px', fill: '#000' });
-        this.HIText = this.add.text(250, 568, 'HI: 0', { fontSize: '32px', fill: '#000' });
+        this.counterText = this.add.text(32, 568, 'SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
+        this.HIText = this.add.text(570, 568, 'MY HI-SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
+        var line = new Phaser.Geom.Line(0, 532, 800, 532);
+        var graphics = this.add.graphics({ lineStyle: { width: 4, color: 0x000000 } });
+        graphics.strokeLineShape(line);
 
         //Player
         this.ball = this.physics.add.image(400, 500, 'ball').setCollideWorldBounds(true).setBounce(1);
@@ -165,7 +168,7 @@ var main = new Phaser.Class({
             }
             this.counter = 0;
             this.counterText.setText(`SCORE: ${this.counter}`);
-            this.HIText.setText(`MY HI: ${this.HI}`);
+            this.HIText.setText(`MY HI-SCORE: ${this.HI}`);
 
             highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
                 var flag = 0;
@@ -224,7 +227,7 @@ var main = new Phaser.Class({
         }
         var enemyReached = 0;
         this.enemies.children.each(function (enemy) {
-            if (enemy.y > 500) {
+            if (enemy.y > 510) {
               enemyReached = 1;
             }
         });
@@ -248,6 +251,11 @@ var main = new Phaser.Class({
               enemy.x -= 1;
           });
         }
+
+      //  this.enemies.children.each(function (enemy) {
+      //      enemy.y += 0.1;
+      //  });
+
         this.enemies.refresh();
     }
 });
