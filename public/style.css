@@ -47,6 +47,18 @@ th, td {
   border-bottom: 1px solid #e0e0e0;
 }
 
+#layout-parent {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.phaser-container, .content{
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+}
+
+
 #table-main {
   color: #e0e0e0;
   background-color: #161616;
