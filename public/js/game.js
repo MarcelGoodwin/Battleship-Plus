@@ -35,6 +35,16 @@ highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
     })
 })
 
+function rerenderTopTen(){
+    while(topTen.hasChildNodes()){
+        topTen.removeChild(topTen.firstChild);
+    }
+    highscoresRef.orderBy("score", "desc").limit(10).get().then((snapshot) => {
+    snapshot.docs.forEach(doc => {
+        renderTopTen(doc);
+    })
+})
+}
 
 var main = new Phaser.Class({
 
@@ -150,6 +160,9 @@ var main = new Phaser.Class({
                         flag = compareTopTen(doc, this.HI);
                     }
                 })
+                if(flag == 1){
+                    rerenderTopTen();
+                }
             });
 
         }else{
