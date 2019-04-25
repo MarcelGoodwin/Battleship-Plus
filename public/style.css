@@ -37,6 +37,7 @@ footer a {
   color: #e0e0e0;
   font-family: "Impact", sans-serif;
   font-size: 16px;
+  padding-top: 50px;
 }
 
 table {
@@ -54,6 +55,7 @@ th, td {
 #layout-parent {
   margin: 0 auto;
   text-align: center;
+  height: 850px;
 }
 
 .phaser-container, .content{

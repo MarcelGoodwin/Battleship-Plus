@@ -85,7 +85,7 @@ var main = new Phaser.Class({
     {
         //Text
         this.counterText = this.add.text(32, 568, 'SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
-        this.HIText = this.add.text(570, 568, 'MY HI-SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
+        this.HIText = this.add.text(550, 568, 'MY HI-SCORE: 0', { fontFamily: 'Impact', fontSize: '32px', fill: '#000' });
 
         //Line
         var line = new Phaser.Geom.Line(0, 532, 800, 532);
